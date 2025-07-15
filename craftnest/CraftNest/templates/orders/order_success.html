@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Order Placed{% endblock %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">✅ Order Placed Successfully!</h2>
+<p>You ordered <strong>{{ order.orderitem_set.first.quantity }}</strong> unit(s) of <strong>{{ product.name }}</strong>.</p>
+<p>Total: ₹{{ order.total_amount }}</p>
+<a href="/" class="mt-4 inline-block text-teal-700 underline">Go back to home</a>
+{% endblock %} 

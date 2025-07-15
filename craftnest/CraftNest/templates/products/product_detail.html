@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - Product Details{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-8 shadow-md rounded mt-8">
+    <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/2 flex-shrink-0">
+            {% if product.images.first %}
+                <img src="{{ product.images.first.image_path.url }}" alt="{{ product.name }}" class="w-full h-72 object-cover rounded">
+            {% else %}
+                <div class="w-full h-72 bg-gray-200 flex items-center justify-center rounded">
+                    <span class="text-gray-400">No Image</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="md:w-1/2 flex flex-col justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
+                <p class="text-gray-600 mb-4">{{ product.description }}</p>
+                <div class="mb-4">
+                    <span class="text-2xl font-bold text-teal-600">${{ product.price }}</span>
+                </div>
+                <div class="mb-2 text-sm text-gray-500">
+                    <span class="mr-4">Category: <span class="font-medium text-gray-700">{{ product.category.name }}</span></span>
+                    <span>Stock: <span class="font-medium text-gray-700">{{ product.stock }}</span></span>
+                </div>
+                <div class="mb-2 text-sm text-gray-500">
+                    <span>Location: <span class="font-medium text-gray-700">{{ product.location }}</span></span>
+                </div>
+                <div class="mb-2 text-sm text-gray-500">
+                    <span>By: <span class="font-medium text-gray-700">{{ product.artisan.user.username }}</span></span>
+                </div>
+            </div>
+            <div class="mt-6 flex space-x-4">
+                <a href="{% url 'products:product_list' %}" class="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Back to Products</a>
+                <a href="{% url 'orders:place_order' product.id %}" class="bg-teal-700 text-white px-4 py-2 rounded">Place Order</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

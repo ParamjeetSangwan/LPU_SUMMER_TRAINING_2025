@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Place Order{% endblock %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Order: {{ product.name }}</h2>
+<p>Price: ₹{{ product.price }}</p>
+
+<form method="post" class="bg-white p-4 rounded shadow max-w-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="mt-2 bg-teal-600 text-white px-4 py-2 rounded">Confirm Order</button>
+</form>
+{% endblock %} 

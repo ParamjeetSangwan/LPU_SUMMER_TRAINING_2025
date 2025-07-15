@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="max-w-md mx-auto bg-white p-8 shadow-md rounded">
+        <h2 class="text-2xl font-semibold mb-4">Register</h2>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-4">
+                <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+                {{ form.username|add_class:"w-full mt-1 border px-3 py-2 rounded shadow-sm focus:ring-teal-500 focus:border-teal-500" }}
+                {% if form.username.errors %}
+                    <p class="text-sm text-red-600">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="id_email" class="block text-sm font-medium text-gray-700">Email</label>
+                {{ form.email|add_class:"w-full mt-1 border px-3 py-2 rounded shadow-sm focus:ring-teal-500 focus:border-teal-500" }}
+                {% if form.email.errors %}
+                    <p class="text-sm text-red-600">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Password 1 -->
+            <div class="mb-4">
+                <label for="id_password1" class="block text-sm font-medium text-gray-700">Password</label>
+                {{ form.password1|add_class:"w-full mt-1 border px-3 py-2 rounded shadow-sm focus:ring-teal-500 focus:border-teal-500" }}
+                {% if form.password1.errors %}
+                    <p class="text-sm text-red-600">{{ form.password1.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Password 2 -->
+            <div class="mb-4">
+                <label for="id_password2" class="block text-sm font-medium text-gray-700">Password Confirmation</label>
+                {{ form.password2|add_class:"w-full mt-1 border px-3 py-2 rounded shadow-sm focus:ring-teal-500 focus:border-teal-500" }}
+                {% if form.password2.errors %}
+                    <p class="text-sm text-red-600">{{ form.password2.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Is Artisan -->
+            <div class="mb-6">
+                <label class="inline-flex items-center">
+                    {{ form.is_artisan }}
+                    <span class="ml-2 text-gray-700">I am an artisan</span>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition">
+                    Register
+                </button>
+            </div>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">Already have an account? <a href="/users/login/"
+                                                                          class="text-teal-700 hover:underline">Login</a>
+        </p>
+    </div>
+{% endblock %}
